@@ -1,0 +1,30 @@
+body {
+    background-color: #f6f6f6; 
+    font-family: sans-serif;
+}
+
+.main-container {
+    /* background-color: violet; */
+    margin-top: 0em;
+    padding: 1em;
+}
+
+.form-inline {
+    display: flex;
+    width: auto;
+}
+
+.table {
+    margin-top: 2%;
+}
+
+.title {
+    /* margin-top: 1em; */
+    margin-bottom: 0.5em;
+    padding-left: 25em;
+    /* background-color: brown; */
+}
+
+.shorten-btn {
+    margin-top: 0.5em;
+}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container main-container">
+    <div class="title">
+        <h3>{{ title }}</h3>
+    </div>
+    <form action="{{ url_for('url_shortener.add_link')}}" method="post" class="">
+        <div class="field">
+            <!-- <label class="label">Original Link</label> -->
+            <div class="control">
+                <input type="text" name="original_link" class="input form-control form-control-lg"
+                    placeholder="Just paste your link here">
+            </div>
+            <div class="control">
+                <button type="submit" class="btn btn-primary btn-lg btn-block shorten-btn">Shorten</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

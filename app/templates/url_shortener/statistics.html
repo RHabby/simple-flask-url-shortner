@@ -1,0 +1,48 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container main-container">
+    <div class="title">
+        <h3>{{ title }}</h3>
+    </div>
+    <table class="table table-sm table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Original Link</th>
+                <th scope="col">Short Link</th>
+                <th scope="col">Visits</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in stats %}
+            <tr>
+                <td>{{ link.original_link }}</td>
+                <td>
+                    <div class="to-copy-link">
+                        <a href="./{{ link.short_link }}" ,
+                            target="_blank">{{ url_for('url_shortener.redirect_to_short_url', short_link=link.short_link, _external=True) }}
+                        </a>
+                    </div>
+                </td>
+                <td>{{ link.visits }}</td>
+                <td>
+                    <form action="{{ url_for('url_shortener.delete_link', short_link=link.short_link)}}" method="POST">
+                        <div class="control">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <div class="control">
+                        <button type="submit" class="btn btn-outline-primary copy-btn">Copy</button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+</section>
+{% endblock%}
