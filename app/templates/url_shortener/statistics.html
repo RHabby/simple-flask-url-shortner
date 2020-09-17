@@ -18,7 +18,7 @@
         <tbody>
             {% for link in stats %}
             <tr>
-                <td>{{ link.original_link }}</td>
+                <td><span>{{ link.original_link }}</span></td>
                 <td>
                     <div class="to-copy-link">
                         <a href="./{{ link.short_link }}" ,
@@ -29,15 +29,11 @@
                 <td>{{ link.visits }}</td>
                 <td>
                     <form action="{{ url_for('url_shortener.delete_link', short_link=link.short_link)}}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <div class="control">
                             <button type="submit" class="btn btn-outline-danger">Delete</button>
                         </div>
                     </form>
-                </td>
-                <td>
-                    <div class="control">
-                        <button type="submit" class="btn btn-outline-primary copy-btn">Copy</button>
-                    </div>
                 </td>
             </tr>
             {% endfor%}

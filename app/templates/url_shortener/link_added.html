@@ -4,30 +4,52 @@
 
 <div class="container main-container">
 
-    <div class="title">
-        <h3>{{ title }}</h3>
+    <!-- <div class="title"> -->
+        <!-- <h3>{{ title }}</h3> -->
+    <!-- </div> -->
+    {% include "messages.html" %}
+
+    <!-- <form action="{{ url_for('url_shortener.add_link')}}" method="post"> -->
+    <!-- <ul> -->
+    <!-- <li class="ol-1"> -->
+    <!-- <div class="field form-group row"> -->
+    <!-- <label class="label col-sm-2 col-form-label">Original Link</label> -->
+    <!-- <div class="control col-sm-10"> -->
+    <!-- <input type="text" name="original_link" class="input form-control form-control-lg" -->
+    <!-- value="{{ original_link }}"> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </li> -->
+    <!-- <li class="sl-1"> -->
+    <!-- <div class="field form-group row"> -->
+    <!-- <label class="label col-sm-2 col-form-label">Short Link</label> -->
+    <!-- <div class="control col-sm-8"> -->
+    <!-- <input type="text" name="original_link" class="input form-control form-control-lg to-copy-link" -->
+    <!-- value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}"> -->
+    <!-- </div> -->
+    <!-- <button type="button" class="btn btn-primary btn-lg copy-btn col-sm-2">Copy</button> -->
+    <!-- </div> -->
+    <!-- </li> -->
+    <!-- </ul> -->
+    <!-- </form> -->
+
+    <div class="ready-links">
+        <form action="{{ url_for('url_shortener.add_link')}}" method="post">
+            <ul class="added-links">
+                <li class="ol-form">
+                    <input type="text" name="original_link" class="ol-form-link" value="{{ original_link }}">
+                    <label class="ol-form-label">Original Link</label>
+                </li>
+                <li class="sl-form">
+                    <input type="text" name="original_link" class="sl-form-link to-copy-link"
+                        value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}">
+
+                    <button type="button" class="copy-btn">Copy</button>
+                    <label class="sl-form-label">Shorten Link</label>
+                </li>
+            </ul>
+        </form>
     </div>
-
-    <form action="{{ url_for('url_shortener.add_link')}}" method="post">
-
-        <div class="field form-group row">
-            <label class="label col-sm-2 col-form-label">Original Link</label>
-            <div class="control col-sm-10">
-                <input type="text" name="original_link" class="input form-control form-control-lg"
-                    value="{{ original_link }}">
-            </div>
-        </div>
-
-        <div class="field form-group row">
-            <label class="label col-sm-2 col-form-label">Short Link</label>
-            <div class="control col-sm-8">
-                <input type="text" name="original_link" class="input form-control form-control-lg to-copy-link"
-                    value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}">
-            </div>
-            <button type="button" class="btn btn-primary btn-lg copy-btn col-sm-2">Copy</button>
-        </div>
-
-    </form>
 </div>
 
 <script>
@@ -36,20 +58,20 @@
     const originalCopyBtnText = copyBtn.innerText;
     const originalCopyBtnClass = copyBtn.className;
     const tempCopyBtnText = "Copied!";
-    const tempCopyBtnClass = "btn btn-success btn-lg col-sm-2"
+    const tempCopyBtnClass = "copy-btn copy-btn-success"
 
     copyBtn.addEventListener("click", () => {
         const valueToCopy = readForm.value.trim();
         if (valueToCopy) {
             navigator.clipboard.writeText(valueToCopy)
-            .then(() => {
-                copyBtn.innerText = tempCopyBtnText;
-                copyBtn.className = tempCopyBtnClass;
-                setTimeout(() => {
-                    copyBtn.innerText = originalCopyBtnText;
-                    copyBtn.className = originalCopyBtnClass;
-                }, 2500);
-            });
+                .then(() => {
+                    copyBtn.innerText = tempCopyBtnText;
+                    copyBtn.className = tempCopyBtnClass;
+                    setTimeout(() => {
+                        copyBtn.innerText = originalCopyBtnText;
+                        copyBtn.className = originalCopyBtnClass;
+                    }, 800);
+                });
         };
     });
 

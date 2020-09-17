@@ -1,21 +1,34 @@
-{% extends "base.html" %}
-
-{% block content %}
+  {% extends "base.html" %} {% block content %}
 <div class="container main-container">
-    <div class="title">
-        <h3>{{ title }}</h3>
+  <!-- <div class="title"> -->
+    <!-- <h3>{{ title }}</h3> -->
+  <!-- </div> -->
+  
+  {% include "messages.html" %}
+
+  <form
+    action="{{ url_for('url_shortener.add_link')}}"
+    method="post"
+    class="input-form"
+  >
+    {{ form.csrf_token }}
+
+    <div class="control">
+      <ul>
+        <li>
+          {{ form.original_link() }} 
+        </li>
+        <li>
+          <div class="label-text">
+            {{ form.is_custom_short_link() }}
+            {{ form.is_custom_short_link.label(class="is_custom_checkbox_label") }}
+          </div>
+        </li>
+        <li>{{ form.custom_short_link() }}</li>
+        <li>{{ form.submit() }}</li>
+      </ul>
     </div>
-    <form action="{{ url_for('url_shortener.add_link')}}" method="post" class="">
-        <div class="field">
-            <!-- <label class="label">Original Link</label> -->
-            <div class="control">
-                <input type="text" name="original_link" class="input form-control form-control-lg"
-                    placeholder="Just paste your link here">
-            </div>
-            <div class="control">
-                <button type="submit" class="btn btn-primary btn-lg btn-block shorten-btn">Shorten</button>
-            </div>
-        </div>
-    </form>
+    
+  </form>
 </div>
 {% endblock %}
