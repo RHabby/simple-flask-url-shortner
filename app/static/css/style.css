@@ -28,7 +28,7 @@ body {
   font-family: var(--font-family-primary);
 }
 
-span {
+span, h1, h2, h3 {
   color: var(--light-color);
 }
 
@@ -39,6 +39,7 @@ header {
   align-items: center;
   padding: 30px 10%;
 }
+
 button,
 button:focus,
 button:active {
@@ -105,7 +106,6 @@ li:nth-child(2):hover ~ .nav__item_underline {
   width: 100px;
   transform:translate(130px);
   -webkit-transform:translate(152px);
-  /* background-color:#e74c3c; */
   transition:all .33s linear;
   -webkit-transition:all .33s linear;
 }
@@ -113,11 +113,10 @@ li:nth-child(2):hover ~ .nav__item_underline {
 li:nth-child(3):hover ~ .nav__item_underline {
   opacity: 1;
   width: 110px;
-  transform:translate(130px);
-  -webkit-transform:translate(280px);
-  /* background-color:#BF55EC; */
   transition:all .33s linear;
   -webkit-transition:all .33s linear;
+  transform:translate(130px);
+  -webkit-transform:translate(280px);
 }
 
 
@@ -125,8 +124,6 @@ li:nth-child(4):hover ~ .nav__item_underline {
   opacity: 1;
   transform:translate(130px);
   -webkit-transform:translate(390px);
-  /* background-color:#f39c12; */
-  /* color:#03C9A9; */
   transition:all .33s linear;
   -webkit-transition:all .33s linear;
 }
@@ -140,8 +137,9 @@ ul {
   padding: 0;
   display: block;
 }
-
-input,
+.original-link,
+.custom-link,
+.label-text,
 .shorten-btn {
   position: fixed;
   top: 50%;
@@ -169,7 +167,9 @@ input::selection {
 }
 
 .label-text {
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
   position: fixed;
   top: calc(50% - 7rem);
   left: 50%;
@@ -183,9 +183,13 @@ input::selection {
 }
 
 .is-custom-checkbox {
-  position: relative;
+  /* position: relative; */
   transform: translateX(-101%);
   top: 1.25rem;
+}
+
+.is_custom_checkbox_label {
+  padding: 0 3px;
 }
 
 #custom-link {
@@ -216,56 +220,45 @@ input::selection {
   background: #c21212;
 }
 
-.added-links {
-  list-style: none;
-}
-
-.added-links li {
-  display: block;
-}
-
-.ol-form {
-  background-color: rgba(161, 161, 161, 0.3);
+.ready-links {
+  /* background-color: slategray; */
+  display: grid;
+  justify-content: left;
+  position: fixed;
+  transform: translateY(100%);
+  width: 58vw;
 }
 
 .ol-form-label, .sl-form-label {
-  position: fixed;
-  left: 21%;
-  top: 31%;
   color: var(--light-color);
   font-size: 1.5rem;
 }
 
-.sl-form-label {
-  position: fixed;
-  top: 41%;
-}
-
-.ol-form-link, .sl-form-link {
-  position: fixed;
-  width: 58vw;
-  left: 50%;
-  /* transform: translate(-50%, -415%); */
-}
-
-.sl-form-link {
-  position: fixed;
-  top: 60%;
-  left: 46.85%;
+.form-link {
   width: 52vw;
+}
+
+.sm-form {
+  width: 46vw;
+}
+
+label ~ .underline {
+  background: var(--light-color);
+  width: 200px;
+  height: 3px;
+  transform: translateY(-10px);
 }
 
 .copy-btn {
   padding: 9px 25px;
-  background-color: var(--light-color);
+  margin-top: 15px;
+  color: var(--light-color);
+  background-color: var(--red-color);
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
   width: 150px;
-  position: fixed;
-  top: 45%;
-  left: 73%
 }
 
 .copy-btn-success {

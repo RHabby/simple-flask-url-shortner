@@ -5,7 +5,7 @@
 <div class="container main-container">
 
     <!-- <div class="title"> -->
-        <!-- <h3>{{ title }}</h3> -->
+    <!-- <h3>{{ title }}</h3> -->
     <!-- </div> -->
     {% include "messages.html" %}
 
@@ -33,23 +33,53 @@
     <!-- </ul> -->
     <!-- </form> -->
 
-    <div class="ready-links">
-        <form action="{{ url_for('url_shortener.add_link')}}" method="post">
-            <ul class="added-links">
-                <li class="ol-form">
-                    <input type="text" name="original_link" class="ol-form-link" value="{{ original_link }}">
-                    <label class="ol-form-label">Original Link</label>
-                </li>
-                <li class="sl-form">
-                    <input type="text" name="original_link" class="sl-form-link to-copy-link"
-                        value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}">
+    <!-- <div class="ready-links"> -->
+    <!-- <form action="{{ url_for('url_shortener.add_link')}}" method="post"> -->
+    <!-- <ul class="added-links"> -->
+    <!--  -->
+    <!-- <li class="ol-form"> -->
+    <!-- <div class="ol-form__cont"> -->
+    <!-- <input type="text" name="original_link" class="ol-form-link" value="{{ original_link }}"> -->
+    <!-- <label class="ol-form-label">Original Link</label> -->
+    <!-- </div> -->
+    <!-- </li> -->
+    <!--  -->
+    <!-- <li class="sl-form"> -->
+    <!-- <div class="sl-form__content"> -->
+    <!-- <input type="text" name="original_link" class="sl-form-link to-copy-link" -->
+    <!-- value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}"> -->
+    <!--  -->
+    <!-- <button type="button" class="copy-btn">Copy</button> -->
+    <!-- <label class="sl-form-label">Shorten Link</label> -->
+    <!-- </div> -->
+    <!-- </li> -->
+    <!-- </ul> -->
+    <!-- </form> -->
+    <!-- </div> -->
 
-                    <button type="button" class="copy-btn">Copy</button>
-                    <label class="sl-form-label">Shorten Link</label>
-                </li>
-            </ul>
-        </form>
-    </div>
+    <form action="{{ url_for('url_shortener.add_link')}}" method="post">
+        <div class="ready-links">
+            
+            <div class="form-group">
+                <label for="olFormLink" class="ol-form-label">
+                    <span>Original Link</span>
+                </label>
+                <div class="underline"></div>
+                <input id="olFormLink" type="text" name="original_link" class="from-control form-link" value="{{ original_link }}">
+            </div>
+
+            <div class="form-group">
+                <label for="slFormLink" class="sl-form-label">
+                    <span>Shorten Link</span>
+                </label>
+                <div class="underline"></div>
+                <input id="slFormLink" type="text" name="original_link" class="from-control form-link sm-form to-copy-link"
+                    value="{{ url_for('url_shortener.redirect_to_short_url', short_link=new_link, _external=True) }}">
+                <button type="button" class="copy-btn">Copy</button>
+            </div>
+
+        </div>  
+    </form>
 </div>
 
 <script>
@@ -70,7 +100,7 @@
                     setTimeout(() => {
                         copyBtn.innerText = originalCopyBtnText;
                         copyBtn.className = originalCopyBtnClass;
-                    }, 800);
+                    }, 500);
                 });
         };
     });

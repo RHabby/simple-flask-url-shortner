@@ -12,7 +12,6 @@
                 <th scope="col">Short Link</th>
                 <th scope="col">Visits</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +25,7 @@
                         </a>
                     </div>
                 </td>
-                <td>{{ link.visits }}</td>
+                <td><span>{{ link.visits }}</span></td>
                 <td>
                     <form action="{{ url_for('url_shortener.delete_link', short_link=link.short_link)}}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
