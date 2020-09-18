@@ -12,9 +12,9 @@ class Link(db.Model):
     creation_time = db.Column(db.DateTime, default=datetime.now)
     visits = db.Column(db.Integer, default=0)
 
-    def __init__(self, **kwargs):
+    def __init__(self, short_link, **kwargs):
         super().__init__(**kwargs)
-        self.short_link = self.generate_short_link()
+        self.short_link = short_link or self.generate_short_link()
 
     def generate_short_link(self):
         chars = f"{string.digits}{string.ascii_letters}-_"
